@@ -5,6 +5,9 @@ const eraserBtn = document.getElementById('eraser-btn');
 const lineWidth = document.querySelector('#line-width');
 const colorSelector = document.querySelector('#color');
 const colorOptions = Array.from(document.getElementsByClassName('color-option'));
+
+const fileInput = document.getElementById('file');
+
 const canvas = document.querySelector('canvas');
 // canvas 크기 지정
 canvas.width = 500;
@@ -197,3 +200,20 @@ function onEraseBtn() {
 }
 
 eraserBtn.addEventListener('click', onEraseBtn);
+
+// 파일 받기
+function onFileChange(evt) {
+  // console.dir(evt.target);
+  const file = evt.target.files[0];
+  const url = URL.createObjectURL(file);
+  // console.log(url);
+
+  const image = new Image(); // <img />
+  image.src = url;
+  image.onload = function() {
+    ctx.drawImage(image, 0, 0, 500, 500);
+    fileInput.value = null;
+  }
+}
+
+fileInput.addEventListener('change', onFileChange);
