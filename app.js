@@ -1,5 +1,6 @@
 const lineWidth = document.querySelector('#line-width');
 const colorSelector = document.querySelector('#color');
+const colorOptions = Array.from(document.getElementsByClassName('color-option'));
 const canvas = document.querySelector('canvas');
 // canvas 크기 지정
 canvas.width = 500;
@@ -139,3 +140,17 @@ function onLineWidthChange(evt) {
 }
 
 lineWidth.addEventListener('change', onLineWidthChange);
+
+// function onColorChange(evt) {
+//   ctx.strokeStyle = evt.target.value;
+//   ctx.fillStyle = evt.target.value;
+// }
+// colorSelector.addEventListener('change', onColorChange);
+
+function onColorClick(evt) {
+  ctx.strokeStyle = evt.target.dataset.color;
+  ctx.fillStyle = evt.target.dataset.color;
+  colorSelector.value = evt.target.dataset.color;
+}
+
+colorOptions.forEach(color => color.addEventListener('click', onColorClick));
