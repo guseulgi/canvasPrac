@@ -24,6 +24,11 @@ const ctx = canvas.getContext("2d"); // 그림을 그릴 수 있는 준비
 // ctx.rect(250, 250, 100, 100);
 // ctx.fill();
 
-// moveTo()
-ctx.rect(50, 50, 100, 100);
-ctx.fill();
+// moveTo(x, y), lineTo(x, y)
+// ctx.moveTo(50, 50);
+// ctx.lineTo(150, 50);
+// ctx.lineTo(150, 150);
+// ctx.lineTo(50, 150);
+// ctx.stroke();
+// ctx.fill();
+
