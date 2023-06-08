@@ -59,18 +59,43 @@ const ctx = canvas.getContext("2d"); // 그림을 그릴 수 있는 준비
 // ctx.fillRect(100, 400, 450, 5);
 
 // 사람 그리기
-ctx.fillRect(210, 200, 15, 100);
-ctx.fillRect(350, 200, 15, 100);
-ctx.fillRect(260, 200, 60, 200);
+// ctx.fillRect(210, 200, 15, 100);
+// ctx.fillRect(350, 200, 15, 100);
+// ctx.fillRect(260, 200, 60, 200);
 
-ctx.arc(290, 120, 50, 1.8*Math.PI, 1.2*Math.PI);
-ctx.fill();
+// ctx.arc(290, 120, 50, 1.8*Math.PI, 1.2*Math.PI);
+// ctx.fill();
 
-ctx.beginPath();
-ctx.arc(270, 120, 8, 0, 2*Math.PI);
-ctx.arc(310, 120, 11, 0, 2*Math.PI);
-ctx.fillStyle = 'white';
-ctx.fill();
+// ctx.beginPath();
+// ctx.arc(270, 120, 8, 0, 2*Math.PI);
+// ctx.arc(310, 120, 11, 0, 2*Math.PI);
+// ctx.fillStyle = 'white';
+// ctx.fill();
 
-ctx.fillStyle='white';
-ctx.fillRect(280, 145, 20, 10);
+// ctx.fillStyle='white';
+// ctx.fillRect(280, 145, 20, 10);
+
+// 그림판 구현하기
+const colors = [
+  '#ff3838',
+  '#ffb8b8',
+  '#c56cf0',
+  'black',
+  '#32ff7e',
+  '#7efff5',
+];
+ctx.lineWidth = 2;
+
+function onClick(evt) {
+  // console.log(evt);
+
+  ctx.beginPath();
+  ctx.moveTo(400, 400);
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  ctx.strokeStyle = color;
+  ctx.lineTo(evt.offsetX, evt.offsetY);
+  ctx.stroke();
+
+} 
+
+canvas.addEventListener('mousemove', onClick);
