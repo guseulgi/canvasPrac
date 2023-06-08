@@ -1,10 +1,15 @@
+const lineWidth = document.querySelector('#line-width');
+const colorSelector = document.querySelector('#color');
 const canvas = document.querySelector('canvas');
 // canvas 크기 지정
-canvas.width = 800;
-canvas.height = 800;
+canvas.width = 500;
+canvas.height = 500;
 
 // context -> 페인트 브러쉬
 const ctx = canvas.getContext("2d"); // 그림을 그릴 수 있는 준비
+
+// 인풋값으로 받아온 값을 라인의 굵기로 지정하기
+ctx.lineWidth = lineWidth.value;
 
 // fillRect() : 직사각형을 만들고 색을 채우기
 // ctx.fillStyle = 'red';
@@ -75,27 +80,62 @@ const ctx = canvas.getContext("2d"); // 그림을 그릴 수 있는 준비
 // ctx.fillStyle='white';
 // ctx.fillRect(280, 145, 20, 10);
 
-// 그림판 구현하기
-const colors = [
-  '#ff3838',
-  '#ffb8b8',
-  '#c56cf0',
-  'black',
-  '#32ff7e',
-  '#7efff5',
-];
-ctx.lineWidth = 2;
+// mousemove 이벤트 핸들러
+// const colors = [
+//   '#ff3838',
+//   '#ffb8b8',
+//   '#c56cf0',
+//   'black',
+//   '#32ff7e',
+//   '#7efff5',
+// ];
+// ctx.lineWidth = 2;
 
-function onClick(evt) {
-  // console.log(evt);
+// function onClick(evt) {
+//   // console.log(evt);
 
+//   ctx.beginPath();
+//   ctx.moveTo(400, 400);
+//   const color = colors[Math.floor(Math.random() * colors.length)];
+//   ctx.strokeStyle = color;
+//   ctx.lineTo(evt.offsetX, evt.offsetY);
+//   ctx.stroke();
+// } 
+
+// canvas.addEventListener('mousemove', onClick);
+
+
+// 드래그앤드롭 이벤트로 그림 그리기
+let isPainting = false;
+
+function onMove(evt) {
+  // 클릭 되었을 때만 그려줄 수 있게끔
+  if(isPainting) {
+    ctx.lineTo(evt.offsetX, evt.offsetY);
+    ctx.stroke();
+    return;
+  }
+  // 마우스의 움직임에 브러쉬는 계속 움직여야 함
+  ctx.moveTo(evt.offsetX, evt.offsetY);
+}
+
+function onMouseDown() {
+  isPainting = true;
+}
+
+function onMouseUp() {
+  isPainting = false;
+  // 각각의 선은 서로 경로가 달라야 한다.
   ctx.beginPath();
-  ctx.moveTo(400, 400);
-  const color = colors[Math.floor(Math.random() * colors.length)];
-  ctx.strokeStyle = color;
-  ctx.lineTo(evt.offsetX, evt.offsetY);
-  ctx.stroke();
+}
 
-} 
+canvas.addEventListener('mousemove', onMove);
+canvas.addEventListener('mousedown', onMouseDown);
+canvas.addEventListener('mouseup', onMouseUp);
+canvas.addEventListener('mouseleave', onMouseUp);
 
-canvas.addEventListener('mousemove', onClick);
+function onLineWidthChange(evt) {
+  ctx.lineWidth = evt.target.value;
+}
+
+lineWidth.addEventListener('change', onLineWidthChange);
