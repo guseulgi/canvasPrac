@@ -45,18 +45,32 @@ const ctx = canvas.getContext("2d"); // 그림을 그릴 수 있는 준비
 
 // ctx.stroke();
 ////
-ctx.fillRect(200, 200, 50, 200);
-ctx.fillRect(400, 200, 50, 200);
-ctx.lineWidth = 5;
-ctx.strokeRect(300, 300, 50, 100);
-ctx.fillRect(200, 200, 200, 30);
+// ctx.fillRect(200, 200, 50, 200);
+// ctx.fillRect(400, 200, 50, 200);
+// ctx.lineWidth = 5;
+// ctx.strokeRect(300, 300, 50, 100);
+// ctx.fillRect(200, 200, 200, 30);
 
-ctx.moveTo(200, 200);
-ctx.lineTo(325, 100);
-ctx.lineTo(450, 200);
+// ctx.moveTo(200, 200);
+// ctx.lineTo(325, 100);
+// ctx.lineTo(450, 200);
+// ctx.fill();
+
+// ctx.fillRect(100, 400, 450, 5);
+
+// 사람 그리기
+ctx.fillRect(210, 200, 15, 100);
+ctx.fillRect(350, 200, 15, 100);
+ctx.fillRect(260, 200, 60, 200);
+
+ctx.arc(290, 120, 50, 1.8*Math.PI, 1.2*Math.PI);
 ctx.fill();
 
-ctx.fillRect(100, 400, 450, 5);
+ctx.beginPath();
+ctx.arc(270, 120, 8, 0, 2*Math.PI);
+ctx.arc(310, 120, 11, 0, 2*Math.PI);
+ctx.fillStyle = 'white';
+ctx.fill();
 
-ctx.fillRect(200, 200, 15, 100);
-ctx.fillRect(200, 200, 15, 100);
+ctx.fillStyle='white';
+ctx.fillRect(280, 145, 20, 10);
