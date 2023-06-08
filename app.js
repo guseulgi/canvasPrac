@@ -1,3 +1,7 @@
+const modeBtn = document.getElementById('mode-btn');
+const destroyBtn = document.getElementById('destroy-btn');
+const eraserBtn = document.getElementById('eraser-btn');
+
 const lineWidth = document.querySelector('#line-width');
 const colorSelector = document.querySelector('#color');
 const colorOptions = Array.from(document.getElementsByClassName('color-option'));
@@ -154,3 +158,42 @@ function onColorClick(evt) {
 }
 
 colorOptions.forEach(color => color.addEventListener('click', onColorClick));
+
+// Fill 버튼 기능 구현
+let isFilling = false;
+function onModeClick() {
+  if(isFilling) {
+    isFilling = false;
+    modeBtn.innerText = "Fill";
+  } else {
+    isFilling = true;
+    modeBtn.innerText = "Draw";
+
+  }
+}
+
+function onCanvasClick() {
+  if(isFilling) {
+    ctx.fillRect(0,0, 500, 500);
+  }
+}
+
+canvas.addEventListener('click', onCanvasClick);
+modeBtn.addEventListener('click', onModeClick);
+
+// 리셋 버튼
+function onDestroyClick() {
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, 500, 500);
+}
+
+destroyBtn.addEventListener('click', onDestroyClick);
+
+// 지우개 버튼
+function onEraseBtn() {
+  ctx.strokeStyle = 'white';
+  isFilling = false;
+  modeBtn.innerHTML = 'Fill';
+}
+
+eraserBtn.addEventListener('click', onEraseBtn);
