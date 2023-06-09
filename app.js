@@ -3,6 +3,8 @@ const destroyBtn = document.getElementById('destroy-btn');
 const eraserBtn = document.getElementById('eraser-btn');
 const textInput = document.getElementById('text');
 
+const saveBtn = document.getElementById('save');
+
 const lineWidth = document.querySelector('#line-width');
 const colorSelector = document.querySelector('#color');
 const colorOptions = Array.from(document.getElementsByClassName('color-option'));
@@ -234,3 +236,16 @@ function onDoubleClick(evt) {
 }
 
 canvas.addEventListener('dblclick', onDoubleClick);
+
+// 저장 버튼 만들기
+function onSaveClick() {
+  const url = canvas.toDataURL();
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'myDrawing.png';
+  a.click();
+
+  onDestroyClick();
+}
+
+saveBtn.addEventListener('click', onSaveClick);
