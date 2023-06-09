@@ -1,6 +1,7 @@
 const modeBtn = document.getElementById('mode-btn');
 const destroyBtn = document.getElementById('destroy-btn');
 const eraserBtn = document.getElementById('eraser-btn');
+const textInput = document.getElementById('text');
 
 const lineWidth = document.querySelector('#line-width');
 const colorSelector = document.querySelector('#color');
@@ -18,6 +19,7 @@ const ctx = canvas.getContext("2d"); // 그림을 그릴 수 있는 준비
 
 // 인풋값으로 받아온 값을 라인의 굵기로 지정하기
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = 'round';
 
 // fillRect() : 직사각형을 만들고 색을 채우기
 // ctx.fillStyle = 'red';
@@ -217,3 +219,18 @@ function onFileChange(evt) {
 }
 
 fileInput.addEventListener('change', onFileChange);
+
+// 더블 클릭하면 텍스트 들어가게 만들기
+function onDoubleClick(evt) {
+  const txt = textInput.value;
+  if(txt === '') return;
+
+  ctx.save();
+  ctx.font = `${ctx.lineWidth * 12}px ` + 'serif';
+  ctx.lineWidth = 1;
+  ctx.fillText(txt, evt.offsetX, evt.offsetY);
+  ctx.restore();
+  textInput.value = '';
+}
+
+canvas.addEventListener('dblclick', onDoubleClick);
