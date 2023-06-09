@@ -1,17 +1,129 @@
+body {
+  background-color: gainsboro;
+}
+
+button {
+  all : unset; 
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgb(77, 121, 205);
+
+  padding: 12px;
+  font-size: large;
+  transition: .4s;
+
+  box-shadow: 2px 2px 3px slategray;
+}
+
+button:hover {
+  transform: translateY(2px);
+  background-color: rgb(38, 90, 186);
+  color: white;
+  font-weight: 600;
+  border-color: rgb(38, 90, 186);
+}
+
+.container {
+  width: 90vw;
+  margin: 5vh auto;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
 canvas {
   width: 500px;
   height: 500px;
+  background-color: white;
   border: 4px solid black;
 }
 
-body {
+.colors {
+  margin: auto 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 8px;
 }
 
 .color-option {
   width: 50px;
-  height: 50px;
+  height: 40px;
+  border-radius: 55%;
   cursor: pointer;
+  transition: .2s;
+  border: 4px solid white;
+}
+.color-option:hover {
+  transform: scale(1.2);
+}
+
+.options {
+  width : 160px;
+  margin: auto 0;
+}
+
+#line-width {
+  margin-bottom: 10px;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+label#file-label {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+
+  margin: 10px 0;
+
+  border-radius: 5px;
+  background-color: rgb(77, 121, 205);
+  padding: 12px;
+  font-size: large;
+  transition: .4s;
+
+  box-shadow: 2px 2px 3px slategray;
+}
+
+label#file-label:hover {
+  transform: translateY(2px);
+  background-color: rgb(38, 90, 186);
+  color: white;
+  font-weight: 600;
+  border-color: rgb(38, 90, 186);
+}
+
+#file {
+  display: none;
+
+}
+
+#text {
+  margin: 10px 0;
+  box-sizing: border-box;
+  padding: 9px 10px;
+  border-radius: 18px;
+  width: 160px;
+  outline: none;
+  border: none;
+  text-align: center;
+}
+
+#save {
+  margin-top: 10px;
+  background-color: rgb(230, 117, 52);
+}
+
+#save:hover {
+  background-color: rgb(197, 91, 29);
 }

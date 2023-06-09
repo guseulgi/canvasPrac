@@ -190,6 +190,9 @@ modeBtn.addEventListener('click', onModeClick);
 
 // 리셋 버튼
 function onDestroyClick() {
+  const question = window.confirm('정말로 모든 그림을 삭제하시겠습니까?');
+  if(question === false) return;
+
   ctx.fillStyle = 'white';
   ctx.fillRect(0, 0, 500, 500);
 }
@@ -239,6 +242,9 @@ canvas.addEventListener('dblclick', onDoubleClick);
 
 // 저장 버튼 만들기
 function onSaveClick() {
+  const question = window.confirm('정말로 저장하시겠습니까?');
+  if(question === false) return;
+
   const url = canvas.toDataURL();
   const a = document.createElement('a');
   a.href = url;
